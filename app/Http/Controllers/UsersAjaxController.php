@@ -9,6 +9,12 @@ use App\User;
 
 class UsersAjaxController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    
     /**
      * Display a listing of the resource.
      *
@@ -30,7 +36,7 @@ class UsersAjaxController extends Controller
                     ->make(true);
         }
       
-        return view('userAjax')->with('users');
+        return view('userAjax');
     }
     /**
      * Store a newly created resource in storage.
