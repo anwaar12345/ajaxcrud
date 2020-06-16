@@ -22,8 +22,10 @@ class UsersAjaxController extends Controller
      */
     public function index(Request $request)
     {
+
         if ($request->ajax()) {
             $data = User::latest()->get();
+            
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
@@ -44,13 +46,23 @@ class UsersAjaxController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,User $User)
     {
-           User::updateOrCreate(['id' => $request->user_id],
-                ['name' => $request->name, 'email' => $request->email,'role' => $request->role]);        
+        if($request->user_id){
+            $data=[
+                'name' => $request->name,
+                 'email' => $request->email,
+                 'password' => $request->profile,
+                 'role' => $request->role, 
+                 'status' => $request->status
+            ];
+           $User->where('id',$request->user_id)->update($data);        
    
         return response()->json(['success'=>'User saved successfully.']);
+    }else{
+
     }
+}
     /**
      * Show the form for editing the specified resource.
      *

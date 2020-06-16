@@ -128,6 +128,17 @@
                                
                                 </div>
                             </div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">status</label>
+                                <div class="col-sm-12">
+                                <select name="status" id="status" class="form-control">
+                                <option value="1">Approved</option>
+                                <option value="0">Pending</option>
+                                </select>
+                               
+                                </div>
+                            </div>
                             </div>
                                 
                             <div class="col-sm-offset-2 col-sm-10">
@@ -161,9 +172,9 @@
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
             {data: 'name', name: 'name'},
             {data: 'email', name: 'email'},
-            {data: 'role', name: 'role'},
+            {data: 'role', name: 'role'},       
             {data: 'action', name: 'action', orderable: false, searchable: false},
-        ]
+        ],
     });
      
     $('#createNewUser').click(function () {
