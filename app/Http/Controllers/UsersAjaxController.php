@@ -52,7 +52,6 @@ class UsersAjaxController extends Controller
             $data=[
                 'name' => $request->name,
                  'email' => $request->email,
-                 'password' => $request->profile,
                  'role' => $request->role, 
                  'status' => $request->status
             ];
@@ -60,7 +59,8 @@ class UsersAjaxController extends Controller
    
         return response()->json(['success'=>'User saved successfully.']);
     }else{
-
+        $User->create($request->all());
+        return response()->json(['success'=>'User Created successfully.']);
     }
 }
     /**

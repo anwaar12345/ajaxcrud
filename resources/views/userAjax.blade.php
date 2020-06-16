@@ -139,12 +139,19 @@
                                
                                 </div>
                             </div>
+                                                        
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Password</label>
+                                <input type="password" name="password" id="password" required="" placeholder="Enter Password" class="form-control">
+                                </div>
                             </div>
-                                
                             <div class="col-sm-offset-2 col-sm-10">
                              <button type="submit" class="btn btn-primary" id="saveBtn" value="create">Save changes
                              </button>
                             </div>
+                            </div>
+                                
+                           
                         </form>
                     </div>
                 </div>
