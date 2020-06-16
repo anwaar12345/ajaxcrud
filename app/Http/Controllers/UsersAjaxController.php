@@ -59,7 +59,15 @@ class UsersAjaxController extends Controller
    
         return response()->json(['success'=>'User saved successfully.']);
     }else{
-        $User->create($request->all());
+        $data=[
+            'name' => $request->name,
+             'email' => $request->email,
+             'role' => $request->role, 
+             'status' => $request->status,
+             'password' => Hash::make($request->password)
+        ];
+
+        $User->create($data);
         return response()->json(['success'=>'User Created successfully.']);
     }
 }

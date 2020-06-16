@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterUsersStatus extends Migration
+class AddStatusUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -14,6 +14,9 @@ class AlterUsersStatus extends Migration
     public function up()
     {
         //
+        Schema::table('users', function (Blueprint $table) {
+            $table->integer('status')->default(0)->nullable();
+        });
     }
 
     /**

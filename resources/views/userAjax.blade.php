@@ -88,6 +88,7 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Role</th>
+                        <th>Status</th>
                         <th width="15%">Action</th>
                     </tr>
                 </thead>
@@ -141,8 +142,8 @@
                             </div>
                                                         
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Password</label>
-                                <input type="password" name="password" id="password" required="" placeholder="Enter Password" class="form-control">
+                                <label class="col-sm-3 control-label passwords">Password</label>
+                                <input type="password" name="password" id="password"  required="" placeholder="Enter Password" class="form-control passwords">
                                 </div>
                             </div>
                             <div class="col-sm-offset-2 col-sm-10">
@@ -179,7 +180,8 @@
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
             {data: 'name', name: 'name'},
             {data: 'email', name: 'email'},
-            {data: 'role', name: 'role'},       
+            {data: 'role', name: 'role'},
+            {data: 'status', name: 'status'},      
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ],
     });
@@ -198,17 +200,19 @@
           $('#modelHeading').html("Edit User");
           $('#saveBtn').val("edit-user");
           $('#ajaxModel').modal('show');
+          $('.passwords').hide();
           $('#User_id').val(data.id);
           $('#name').val(data.name);
           $('#email').val(data.email);
           $('#role').val(data.role);
+          $('#status').val(data.status);
 
       })
    });
     
     $('#saveBtn').click(function (e) {
         e.preventDefault();
-        $(this).html('Sending..');
+        $(this).html('Saving ...');
     
         $.ajax({
           data: $('#UserForm').serialize(),
@@ -232,7 +236,7 @@
     $('body').on('click', '.deleteUser', function () {
      
         var User_id = $(this).data("id");
-        confirm("Are You sure want to delete !");
+        confirm("Deleting User!!!");
       
         $.ajax({
             type: "DELETE",

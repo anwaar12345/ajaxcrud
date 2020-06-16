@@ -11,11 +11,35 @@
 ?></ul>
     </div>
     <div class="col-md-8">
+ <?php if(Auth::user()->role==1){?>
  <h4 class="text-center text-danger">Approved users</h4>   
-    @foreach($users as $user)
-    {{$user->id}}
-    @endforeach
     
+    
+    <table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Profile</th>
+      <th scope="col">Role</th>
+    </tr>
+  </thead>
+  <tbody>
+  @foreach($users as $user)
+    <tr>
+      
+      <td>{{$user->name}}</td>
+      <td>{{$user->email}}</td>
+      <td>{{$user->profile}}</td>
+      <td><?php echo $user->role==1 ?  "Admin" :"user" ?></td>
+   
+    </tr>
+    @endforeach
+
+  </tbody>
+</table>
+
+ <?php } ?>
     </div>
     </div>
     </div>
