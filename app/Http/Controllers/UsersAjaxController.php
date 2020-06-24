@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Hash;
-
+use Auth;
 use App\User;
 
 class UsersAjaxController extends Controller
@@ -24,7 +24,8 @@ class UsersAjaxController extends Controller
     {
 
         if ($request->ajax()) {
-            $data = User::latest()->get();
+            if(Auth::user()->role==1){
+                $data = User::latest()->get();
             
             return Datatables::of($data)
                     ->addIndexColumn()
@@ -36,6 +37,21 @@ class UsersAjaxController extends Controller
                     })
                     ->rawColumns(['action'])
                     ->make(true);
+            }else{
+                $data = User::latest()->get()->where('id',Auth::user()->id);
+            
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+                           $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editUser">Edit</a>';
+   
+                           $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteUser">Delete</a>';
+                            return $btn;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+            }
+            
         }
       
         return view('userAjax');

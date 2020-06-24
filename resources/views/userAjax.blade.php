@@ -75,8 +75,11 @@
          <div class="card-header">
             <div class="col-md-12">
                 <h4 class="card-title">User Management Crud 
-                  <a class="btn btn-success ml-5" href="javascript:void(0)" id="createNewUser"> Create New User</a>
+                 @if(Auth::user()->role==1) <a class="btn btn-success ml-5" href="javascript:void(0)" id="createNewUser"> Create New User</a>
                   <a class="btn btn-success ml-5" href="/home">Back to Dashboard</a>
+                  @else
+                  <a class="btn btn-success ml-5" href="/home">Back to Dashboard</a>
+                  @endif
                 </h4>
             </div>
          </div>
@@ -184,6 +187,8 @@
             {data: 'status', name: 'status'},      
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ],
+       
+    
     });
      
     $('#createNewUser').click(function () {
@@ -195,6 +200,7 @@
     });
     
     $('body').on('click', '.editUser', function () {
+        
       var User_id = $(this).data('id');
       $.get("{{ route('users.index') }}" +'/' + User_id +'/edit', function (data) {
           $('#modelHeading').html("Edit User");
@@ -212,7 +218,7 @@
     
     $('#saveBtn').click(function (e) {
         e.preventDefault();
-        $(this).html('Saving ...');
+        $(this).html('Saving in process');
     
         $.ajax({
           data: $('#UserForm').serialize(),
