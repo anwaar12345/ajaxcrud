@@ -24,5 +24,5 @@ Route::resource('users','UsersAjaxController');
 Route::get('login/google', function(){
     dd(1);
 });
-Route::get('auth/google/callback', 'Auth\GoogleController@handleGoogleCallback');
+Route::get('login/google/callback', 'Auth\GoogleController@handleGoogleCallback');
 
