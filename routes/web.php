@@ -20,3 +20,9 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 Route::resource('users','UsersAjaxController');
+
+Route::get('auth/google', function(){
+    dd(1);
+});
+Route::get('auth/google/callback', 'Auth\GoogleController@handleGoogleCallback');
+
