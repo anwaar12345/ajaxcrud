@@ -21,7 +21,7 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 Route::resource('users','UsersAjaxController');
 
-Route::get('auth/google', function(){
+Route::get('login/google', function(){
     dd(1);
 });
 Route::get('auth/google/callback', 'Auth\GoogleController@handleGoogleCallback');
