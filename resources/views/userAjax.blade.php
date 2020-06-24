@@ -137,8 +137,8 @@
                                 <label class="col-sm-3 control-label">status</label>
                                 <div class="col-sm-12">
                                 <select name="status" id="status" class="form-control">
-                                <option value="1">Approved</option>
-                                <option value="0">Pending</option>
+                                <option value="1">Active</option>
+                                <option value="0">InActive</option>
                                 </select>
                                
                                 </div>
@@ -241,8 +241,8 @@
     $('body').on('click', '.deleteUser', function () {
      
         var User_id = $(this).data("id");
-        confirm("Deleting User!!!");
-      
+        if(confirm("Deleting User!!!"))
+      {
         $.ajax({
             type: "DELETE",
             url: "{{ route('users.store') }}"+'/'+User_id,
@@ -253,6 +253,7 @@
                 console.log('Error:', data);
             }
         });
+        }
     });
      
   });
