@@ -28,7 +28,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                    @if(Auth::user()->role==1)
+                    <li class="list-group-item active bg-light"><a href="/users" class="link" style="text-decoration:none;">User Management</a></li>
+                    @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -75,10 +77,8 @@
          <div class="card-header">
             <div class="col-md-12">
                 <h4 class="card-title">User Management Crud 
-                 @if(Auth::user()->role==1) <a class="btn btn-success ml-5" href="javascript:void(0)" id="createNewUser"> Create New User</a>
-                  <a class="btn btn-success ml-5" href="/home">Back to Dashboard</a>
-                  @else
-                  <a class="btn btn-success ml-5" href="/home">Back to Dashboard</a>
+                 @if(Auth::user()->role==1) 
+                 <a class="btn btn-success ml-5" href="javascript:void(0)" id="createNewUser"> Create New User</a>
                   @endif
                 </h4>
             </div>
