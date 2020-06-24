@@ -25,7 +25,7 @@ class UsersAjaxController extends Controller
 
         if ($request->ajax()) {
             if(Auth::user()->role==1){
-                $data = User::latest()->get();
+                $data = User::latest()->get()->where('id','!=',Auth::user()->id);
             
             return Datatables::of($data)
                     ->addIndexColumn()
@@ -34,6 +34,12 @@ class UsersAjaxController extends Controller
    
                            $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteUser">Delete</a>';
                             return $btn;
+                    })
+                    ->editColumn('status', function ($data) {
+                        return ($data->status == 1) ? 'active' : 'Inactive';
+                    })
+                    ->editColumn('role', function ($data) {
+                        return ($data->role == 1) ? 'Admin' : 'User';
                     })
                     ->rawColumns(['action'])
                     ->make(true);
