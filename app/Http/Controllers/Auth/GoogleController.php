@@ -28,7 +28,7 @@ class GoogleController extends Controller
      */
     public function handleGoogleCallback()
     {
-        // try {
+        try {
             
         
             $googleUser = Socialite::driver('google')->stateless()->user();
@@ -45,14 +45,13 @@ class GoogleController extends Controller
                 $user->google_id = $googleUser->id;
                 $user->password =  123;
                 $user->save();
-                // dd($user->id);exit;
                 Auth::loginUsingId($user->id,true);
             }
             return redirect()->to('/');
-        // } 
-        // catch (Exception $e) {
-        //     return 'error';
-        // }
+        } 
+        catch (Exception $e) {
+            return 'error';
+        }
     }
     }
         
