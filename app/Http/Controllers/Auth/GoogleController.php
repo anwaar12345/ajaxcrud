@@ -1,7 +1,7 @@
 <?php
   
 namespace App\Http\Controllers\Auth;
-  
+ 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Socialite;
@@ -43,7 +43,7 @@ class GoogleController extends Controller
                 $user->name = $googleUser->name;
                 $user->email = $googleUser->email;
                 $user->google_id = $googleUser->id;
-                $user->password =  123;
+                $user->password = Hash::make(rand(1,1000));
                 $user->save();
                 Auth::loginUsingId($user->id,true);
             }
