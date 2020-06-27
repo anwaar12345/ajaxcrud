@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\mail\regismail;
 use Illuminate\Support\Facades\Mail;
-
+use App\Jobs\SendEmailJob;
 class RegisterController extends Controller
 {
     /*
@@ -72,7 +72,12 @@ class RegisterController extends Controller
     $file_path = $data['profile']->move(public_path().'/images/',$file_name);
 
     
-    Mail::to($data['email'])->send( new regismail());
+    // Mail::to($data['email'])->send( new regismail());
+
+    $details['email'] = $data['email'];
+  
+    dispatch(new SendEmailJob($details));
+
     return User::create([
         'name' => $data['name'],
         'email' => $data['email'],
