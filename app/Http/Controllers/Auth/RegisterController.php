@@ -8,6 +8,8 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\mail\regismail;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
@@ -69,12 +71,17 @@ class RegisterController extends Controller
     $file_name =  str_replace(' ','_',$data['name']).".".$data['profile']->getClientOriginalExtension();
     $file_path = $data['profile']->move(public_path().'/images/',$file_name);
 
+    
+    Mail::to($data['email'])->send( new regismail());
     return User::create([
         'name' => $data['name'],
         'email' => $data['email'],
         'password' => Hash::make($data['password']),
         'profile' => $file_name, 
     ]);
-    }
+    
+   
+
+}
    
 }
