@@ -13,8 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+use App\mail\regismail;
+
+Route::get('/emails', function () {
+   
+   Mail::to('fa15be0011@maju.edu.pk')->send( new regismail());
+   
+   
+    return new regismail();
 });
 
 Auth::routes();
