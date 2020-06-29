@@ -10,15 +10,19 @@ use Illuminate\Queue\SerializesModels;
 class regismail extends Mailable
 {
     use Queueable, SerializesModels;
+    protected $data;
+
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data)
     {
         //
+        $this->data = $data;
+
     }
 
     /**
@@ -28,6 +32,7 @@ class regismail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.regismail');
+        $data = $this->data;
+        return $this->view('emails.custom',compact('data'));
     }
 }

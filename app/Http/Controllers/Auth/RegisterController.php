@@ -71,12 +71,10 @@ class RegisterController extends Controller
     $file_name =  str_replace(' ','_',$data['name']).".".$data['profile']->getClientOriginalExtension();
     $file_path = $data['profile']->move(public_path().'/images/',$file_name);
 
-    
-    // Mail::to($data['email'])->send( new regismail());
-
     $details['email'] = $data['email'];
-  
-    dispatch(new SendEmailJob($details));
+    Mail::to($details)->queue(new regismail($data['name']));
+
+   
 
     return User::create([
         'name' => $data['name'],
