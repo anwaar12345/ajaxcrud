@@ -8,7 +8,11 @@
     <div class="nav-side-menu" style="margin-top:100px;">
    
    <div class="menu-list">
-   {{ Session::get('category') }}
+    @foreach(Session::get('category') as $cat)
+    
+    {{$cat->childs}}
+    
+    @endforeach
 
        <ul id="menu-content" class="menu-content collapse out">
           
