@@ -24,10 +24,14 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $categories = 'categories';
+        session()->put('category', $categories);
         $users = User::all()->where('status',1);
-
-
-
         return view('home',compact('users'));
     }
+
+    
+
+
+
 }

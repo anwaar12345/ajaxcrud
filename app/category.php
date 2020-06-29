@@ -12,4 +12,6 @@ class category extends Model
         return $this->hasMany('App\category','parent_id','id') ;
     }
    
+   
+
 }

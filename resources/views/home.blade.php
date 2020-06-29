@@ -8,6 +8,7 @@
     <div class="nav-side-menu" style="margin-top:100px;">
    
    <div class="menu-list">
+   {{ Session::get('category') }}
 
        <ul id="menu-content" class="menu-content collapse out">
           
