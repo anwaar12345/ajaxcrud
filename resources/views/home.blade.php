@@ -1,8 +1,31 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="nav-side-menu" style="margin:100px;">
+   
+        <div class="menu-list">
+  
+            <ul id="menu-content" class="menu-content collapse out">
+               
+
+                <li  data-toggle="collapse" data-target="#products" class="collapsed active">
+                  <a href="#"><i class="fa fa-gift fa-lg"></i> UI Elements <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="products">
+                    <li class="active"><a href="#">CSS3 Animation</a></li>
+                    <li><a href="#">General</a></li>
+                    <li><a href="#">Buttons</a></li>
+                    <li><a href="#">Tabs & Accordions</a></li>
+                </ul>
+
+            </ul>
+     </div>
+</div>
+    </div>
 <div class="container">
     <div class="row">
+    <div class="col">
+
     <div class="col">
  <?php if(Auth::user()->role==1){?>
  <h4 class="text-center text-danger">Approved users</h4>   
