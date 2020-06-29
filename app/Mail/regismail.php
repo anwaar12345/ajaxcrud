@@ -33,6 +33,8 @@ class regismail extends Mailable
     public function build()
     {
         $data = $this->data;
-        return $this->view('emails.custom',compact('data'));
+        return $this->subject("Thanks For Sign Up")
+        ->from(env('MAIL_USERNAME'), 'User Management App')
+        ->view('emails.custom',compact('data'));
     }
 }
