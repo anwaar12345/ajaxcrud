@@ -71,19 +71,19 @@ class RegisterController extends Controller
     $file_name =  str_replace(' ','_',$data['name']).".".$data['profile']->getClientOriginalExtension();
     $file_path = $data['profile']->move(public_path().'/images/',$file_name);
 
-    $details['email'] = $data['email'];
-    Mail::to($details)->queue(new regismail($data['name']));
 
-   
-
-    return User::create([
+    $user =  User::create([
         'name' => $data['name'],
         'email' => $data['email'],
         'password' => Hash::make($data['password']),
         'profile' => $file_name, 
     ]);
     
-   
+   if($user){
+    $details['email'] = $data['email'];
+    Mail::to($details)->queue(new regismail($data['name']));
+    return $user;   
+   }
 
 }
    
