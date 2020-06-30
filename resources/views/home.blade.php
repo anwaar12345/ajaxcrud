@@ -11,11 +11,11 @@
    <ul id="menu-content" class="menu-content collapse out">
        @foreach(Session::get('category') as $menu)
 
-           <li  data-toggle="collapse" data-target="#products" class="collapsed active">
+           <li  data-toggle="collapse" data-target="<?php  echo($menu->name == 'WEB DEVELOPMENT' ? "#WEBDEVELOPMENT" : ($menu->name == 'MOBILE APP DEVELOPMENT' ? '#MOBILEAPPDEVELOPMENT':''));?>" class="collapsed <?php  echo($menu->name == 'WEB DEVELOPMENT' ? 'active' : ($menu->name == 'MOBILE APP DEVELOPMENT' ? 'active':''));?>">
          
-             <a href="#"><i class="<?php  echo($menu->name == "WEB DEVELOPMENT" ? "fa fa-globe fa-lg" : ($menu->name == 'MOBILE APP DEVELOPMENT' ? 'fa fa-phone fa-lg':''));  ?>"></i>   {{ $menu->name }} <span class="arrow"></span></a>
-             </li>          
-           <ul class="sub-menu collapse" id="products">
+             <a href="#"><i class="<?php  echo($menu->name == 'WEB DEVELOPMENT' ? "fa fa-globe fa-lg" : ($menu->name == 'MOBILE APP DEVELOPMENT' ? 'fa fa-phone fa-lg':''));?>"></i>   {{ $menu->name }} <span class="arrow"></span></a>
+             </li>     
+           <ul class="sub-menu collapse" id="<?php  echo($menu->name == 'WEB DEVELOPMENT' ? "WEBDEVELOPMENT" : ($menu->name == 'MOBILE APP DEVELOPMENT' ? 'MOBILEAPPDEVELOPMENT':''));?>">
            @foreach($menu->childs as $child)
             <li> <a href="#">{{ $child->name }}</a></li>
             @endforeach    
