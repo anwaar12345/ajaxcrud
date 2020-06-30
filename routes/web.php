@@ -13,13 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-use App\mail\regismail;
 
-Route::get('/emails', function () {
-   
-     
-    return new regismail();
-});
+Route::get('/phplaravel', function () {    
+   return view('pagephp');
+})->name('phplaravel');
+
+
+Route::get('/nodejs', function () {    
+    return view('pagenodejs');
+ })->name('nodejs');
+ 
+
 
 Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
