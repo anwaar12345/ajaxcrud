@@ -8,26 +8,23 @@
     <div class="nav-side-menu" style="margin-top:100px;">
    
    <div class="menu-list">
-    @foreach(Session::get('category') as $cat)
-    
-    {{$cat->childs}}
-    
-    @endforeach
-
-       <ul id="menu-content" class="menu-content collapse out">
-          
+   <ul id="menu-content" class="menu-content collapse out">
+       @foreach(Session::get('category') as $menu)
 
            <li  data-toggle="collapse" data-target="#products" class="collapsed active">
-             <a href="#"><i class="fa fa-gift fa-lg"></i> UI Elements <span class="arrow"></span></a>
-           </li>
+         
+             <a href="#"><i class="<?php  echo($menu->name == "WEB DEVELOPMENT" ? "fa fa-globe fa-lg" : ($menu->name == 'MOBILE APP DEVELOPMENT' ? 'fa fa-phone fa-lg':''));  ?>"></i>   {{ $menu->name }} <span class="arrow"></span></a>
+             </li>          
            <ul class="sub-menu collapse" id="products">
-               <li class="active"><a href="#">CSS3 Animation</a></li>
-               <li><a href="#">General</a></li>
-               <li><a href="#">Buttons</a></li>
-               <li><a href="#">Tabs & Accordions</a></li>
+           @foreach($menu->childs as $child)
+            <li> <a href="#">{{ $child->name }}</a></li>
+            @endforeach    
            </ul>
 
+           @endforeach
        </ul>
+
+
 </div>
 </div>
 </div>

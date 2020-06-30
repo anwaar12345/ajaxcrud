@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $categories = category::all();
+        $categories = category::all()->where('parent_id',0);
         session()->put('category', $categories);
         $users = User::all()->where('status',1);
         return view('home',compact('users'));
