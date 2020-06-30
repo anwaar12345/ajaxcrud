@@ -24,7 +24,7 @@ Route::get('/nodejs', function () {
  })->name('nodejs');
  
  Route::get('/reactnative', function () {    
-   return view('pagenodejs');
+   return view('pagereactnative');
 })->name('reactnative');
 
 
