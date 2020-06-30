@@ -23,6 +23,10 @@ Route::get('/nodejs', function () {
     return view('pagenodejs');
  })->name('nodejs');
  
+ Route::get('/reactnative', function () {    
+   return view('pagenodejs');
+})->name('reactnative');
+
 
 
 Auth::routes();

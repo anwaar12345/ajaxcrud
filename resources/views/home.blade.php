@@ -8,7 +8,7 @@
     @include('side')
 </div>
     <div class="col">
- <?php if(Auth::user()->role==1){?>
+  @if(Auth::user()->role==1)
  <h4 class=" text-danger">Approved users</h4>   
     
     
@@ -28,7 +28,7 @@
       <td>{{$user->name}}</td>
       <td>{{$user->email}}</td>
       <td> <img src="{{asset('images')}}/{{$user->profile}}" height="100px" width="100px"> </td>
-      <td><?php echo $user->role==1 ?  "Admin" :"user" ?></td>
+      <td>{{$user->role==1 ?  "Admin" :"user"}}</td>
    
     </tr>
     @endforeach
@@ -36,7 +36,7 @@
   </tbody>
 </table>
 
- <?php } ?>
+ @endif
     </div>
     </div>
     </div>
